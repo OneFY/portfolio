@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown 2021</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="imgBx"></div>
+        <div class="countdownBx">
+            <h2 id="text">Countdown to New Year <br> <span>20<i>21</i></span></h2>
+            <div class="countdown">
+                <div id="day">NA</div>
+                <div id="hour">NA</div>
+                <div id="minute">NA</div>
+                <div id="second">NA</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const countDate = new Date('jan 1, 2022 00:00:00').getTime();
+
+        function newYear(){
+            const now = new Date().getTime();
+            gap = countDate - now;
+
+            if(gap <= 0)
+            {
+                let text = document.getElementById('text');
+                text.innerText = "С новым годом!";
+                document.getElementById('day').innerText = "Счастья";
+                document.getElementById('hour').innerText = "Здоровья";
+                document.getElementById('minute').innerText = "Любви";
+                document.getElementById('second').innerText = "Удачи";
+                document.querySelector('.imgBx').style.background = 'url(bg2.jpg)';
+                document.querySelector('.imgBx').style.backgroundSize = 'contain';
+                document.querySelector('.imgBx').style.backgroundPosition = 'center';
+                document.querySelector('.imgBx').style.width = '450px';
+            }
+            else
+            {
+                const second = 1000;
+                const minute = second * 60;
+                const hour = minute * 60;
+                const day = hour * 24;
+
+                const d = Math.floor(gap / day);
+                const h = Math.floor((gap % day) / hour);
+                const m = Math.floor((gap % hour) / minute);
+                const s = Math.floor((gap % minute) / second);
+
+                document.getElementById('day').innerText = d;
+                document.getElementById('hour').innerText = h;
+                document.getElementById('minute').innerText = m;
+                document.getElementById('second').innerText = s;
+            }
+        }
+
+        setInterval(newYear, 1);
+    </script>
+</body>
+</html>
